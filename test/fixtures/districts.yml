@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  electorate: 1
+  mandate: 1
+  invalid_vote: 1
+  empty_vote: 1
+  other_vote: 1
+  issued_voting_card: 1
+
+two:
+  name: MyString
+  electorate: 1
+  mandate: 1
+  invalid_vote: 1
+  empty_vote: 1
+  other_vote: 1
+  issued_voting_card: 1

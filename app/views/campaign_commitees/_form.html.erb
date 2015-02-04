@@ -1,0 +1,29 @@
+<%= form_for(@campaign_commitee) do |f| %>
+  <% if @campaign_commitee.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@campaign_commitee.errors.count, "error") %> prohibited this campaign_commitee from being saved:</h2>
+
+      <ul>
+      <% @campaign_commitee.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :logo %><br>
+    <%= f.text_area :logo %>
+  </div>
+  <div class="field">
+    <%= f.label :party %><br>
+    <%= f.text_field :party %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

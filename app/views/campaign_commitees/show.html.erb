@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @campaign_commitee.name %>
+</p>
+
+<p>
+  <strong>Logo:</strong>
+  <%= @campaign_commitee.logo %>
+</p>
+
+<p>
+  <strong>Party:</strong>
+  <%= @campaign_commitee.party %>
+</p>
+
+<%= link_to 'Edit', edit_campaign_commitee_path(@campaign_commitee) %> |
+<%= link_to 'Back', campaign_commitees_path %>

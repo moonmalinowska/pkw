@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @district.name %>
+</p>
+
+<p>
+  <strong>Electorate:</strong>
+  <%= @district.electorate %>
+</p>
+
+<p>
+  <strong>Mandate:</strong>
+  <%= @district.mandate %>
+</p>
+
+<p>
+  <strong>Invalid vote:</strong>
+  <%= @district.invalid_vote %>
+</p>
+
+<p>
+  <strong>Empty vote:</strong>
+  <%= @district.empty_vote %>
+</p>
+
+<p>
+  <strong>Other vote:</strong>
+  <%= @district.other_vote %>
+</p>
+
+<p>
+  <strong>Issued voting card:</strong>
+  <%= @district.issued_voting_card %>
+</p>
+
+<%= link_to 'Edit', edit_district_path(@district) %> |
+<%= link_to 'Back', districts_path %>

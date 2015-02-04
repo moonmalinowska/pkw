@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Pkw</title>
+  <title>PKW</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+<% if !current_user %>
+    <%= link_to "Zarejestruj", new_user_path %> |
+    <%= link_to "Zaloguj", new_user_session_path %>
+<% else %>
+    <%= link_to "Użytkownik", users_path %> |
+    <%= link_to "Wyloguj", user_session_path, :method => :delete, :confirm => "Are you sure you want to logout?" %>
+<% end %>
 
 <%= yield %>
 

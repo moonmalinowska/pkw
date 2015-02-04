@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Districts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Electorate</th>
+      <th>Mandate</th>
+      <th>Invalid vote</th>
+      <th>Empty vote</th>
+      <th>Other vote</th>
+      <th>Issued voting card</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @districts.each do |district| %>
+      <tr>
+        <td><%= district.name %></td>
+        <td><%= district.electorate %></td>
+        <td><%= district.mandate %></td>
+        <td><%= district.invalid_vote %></td>
+        <td><%= district.empty_vote %></td>
+        <td><%= district.other_vote %></td>
+        <td><%= district.issued_voting_card %></td>
+        <td><%= link_to 'Show', district %></td>
+        <td><%= link_to 'Edit', edit_district_path(district) %></td>
+        <td><%= link_to 'Destroy', district, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New District', new_district_path %>

@@ -43,4 +43,14 @@ group :development, :test do
   gem 'spring'
 end
 
-gem "therubyracer"
+gem 'therubyracer'
+
+#Use activeadmin
+gem 'activeadmin', github: 'activeadmin'
+gem 'devise'
+#Use active_skin for activeadmin
+#gem 'active_skin'
+#Use Cancancan
+gem 'cancancan', '~> 1.10'
+# Use authentication
+gem 'authlogic'
