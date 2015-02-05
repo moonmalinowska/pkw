@@ -1,6 +1,19 @@
 <h1>Edycja użytkownika</h1>
 
-<%= render 'form' %>
+<div class="field">
+  <strong>Hasło:</strong><br>
+  <%= f.password_field :password %>
+</div>
+<div class="field">
+  <strong>Potwierdź hasło:</strong> <br />
+  <%= f.password_field :password_confirmation %>
+</div>
+
+
+</div>
+<div class="actions">
+  <%= f.submit "Zatwierdź" %>
+</div>
 
 <%= link_to 'Wyświetl', @user %> |
 <%= link_to 'Powrót', users_path %>

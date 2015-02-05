@@ -15,20 +15,22 @@ ActiveAdmin.register User do
   # end
  # menu :label => I18n.t(:Users)
   permit_params :login, :password, :password_confirmation, :role
+
   actions :all, :change_role
   index do
     selectable_column
     id_column
     column :login
 
-    column :role
+    column :role, :as => :check_boxes
     column :created_at
     actions defaults: true do |user|
-      link_to 'Zmień role', change_role_admin_user_path(user)
+      link_to 'Zmień rolę', change_role_admin_user_path(user)
     end
   end
   member_action :change_role, method: :get do
     @user = User.find(params[:id])
   end
+
 
 end

@@ -35,5 +35,18 @@
   <%= @district.issued_voting_card %>
 </p>
 
+<p>
+  <strong>Liczba głosów oddanych:</strong>
+  <%= @district.issued_voting_card %>
+</p>
+<p>
+  <strong>Nieważne głosy:</strong>
+  <%= @district.invalid_votes %>
+</p>
+<p>
+  <%= @district.valid_votes %>
+</p>
+
+
 <%= link_to 'Edit', edit_district_path(@district) %> |
 <%= link_to 'Back', districts_path %>

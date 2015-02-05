@@ -13,4 +13,8 @@ class District < ActiveRecord::Base
   def valid_votes
     total = self.votes.inject(0){|s,v| s + v.vote }
   end
+
+  def invalid_votes
+    total = self.invalid_vote + self.empty_vote + self.other_vote
+  end
 end
