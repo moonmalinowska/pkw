@@ -13,7 +13,7 @@ ActiveAdmin.register User do
   #   permitted << :other if resource.something?
   #   permitted
   # end
-  menu :label => I18n.t(:Users)
+ # menu :label => I18n.t(:Users)
   permit_params :login, :password, :password_confirmation, :role
   actions :all, :change_role
   index do

@@ -37,14 +37,21 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
+
   def update
+=begin
     @user = current_user
     if @user.update_attributes(user_params)
+
       flash[:notice] = "Successfully updated profile."
       redirect_to admin_root_path
     else
       render :action => 'edit'
     end
+=end
+    @user = User.find_by_id(params[:id])
+    @user.update_attributes(user_params)
+    flash[:success] = "Product donated!"
   end
 
   # DELETE /users/1

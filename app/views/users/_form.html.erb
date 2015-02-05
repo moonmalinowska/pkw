@@ -23,10 +23,7 @@
     <strong>Potwierdź hasło:</strong> <br />
     <%= f.password_field :password_confirmation %>
   </div>
-  <div class="field">
-    <%= f.label :role %><br>
-    <%= f.collection_select(:role, User::ROLES, :to_s, lambda{|i| i.to_s.humanize}) %>
-  </div>
+
 
   </div>
   <div class="actions">
