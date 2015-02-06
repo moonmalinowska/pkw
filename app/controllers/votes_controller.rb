@@ -1,5 +1,6 @@
 class VotesController < ApplicationController
   before_action :set_vote, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource :only => [:index, :show, :edit]
 
   # GET /votes
   # GET /votes.json

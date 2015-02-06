@@ -15,4 +15,6 @@ ActiveAdmin.register Voivodship do
   # end
 
   permit_params :name
+
+
 end

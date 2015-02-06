@@ -28,10 +28,15 @@ class Ability
     #
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
+    user ||= User.new
 
-     if user.role? :klient
-       can [:edit], User
-       can :read, Product
-     end
+    if user.role == "Centralny"
+      can [:index, :show], @voivodship
+      can :all, Vote
+
+    end
+
+    can :manage, :all if user.role == "Centralny"
+
   end
 end

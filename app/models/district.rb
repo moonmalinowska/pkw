@@ -10,6 +10,13 @@ class District < ActiveRecord::Base
   validates :other_vote, numericality: true
   validates :issued_voting_card, numericality: true
 
+  def set_districts
+    @districts = District.all.map do |district|
+      [ district.name, district.id]
+      return @districts
+    end
+  end
+
   def valid_votes
     total = self.votes.inject(0){|s,v| s + v.vote }
   end

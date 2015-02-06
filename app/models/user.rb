@@ -19,4 +19,11 @@ class User < ActiveRecord::Base
     ROLES.index(base_role.to_s) <= ROLES.index(role)
   end
 
+  def set_districts
+    @districts = District.all.map do |district|
+      [ district.name, district.id]
+      #return @districts
+    end
+  end
+
 end

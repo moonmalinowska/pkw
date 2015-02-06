@@ -1,0 +1,17 @@
+<%= form_for(@commitee) do |f| %>
+  <% if @commitee.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@commitee.errors.count, "error") %> prohibited this commitee from being saved:</h2>
+
+      <ul>
+      <% @commitee.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

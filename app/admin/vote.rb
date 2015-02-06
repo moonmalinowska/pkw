@@ -14,5 +14,5 @@ ActiveAdmin.register Vote do
   #   permitted
   # end
 
-  permit_params :vote, :campaign_commitee_id, :district_id
+  permit_params :vote, :commitee_id, :district_id
 end

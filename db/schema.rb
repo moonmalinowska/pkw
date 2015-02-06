@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150204211355) do
+ActiveRecord::Schema.define(version: 20150206150526) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20150204211355) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
 
-  create_table "campaign_commitees", force: :cascade do |t|
+  create_table "commitees", force: :cascade do |t|
     t.string   "name"
     t.text     "logo"
     t.string   "party"
@@ -54,12 +54,12 @@ ActiveRecord::Schema.define(version: 20150204211355) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "campaign_commitees_voivodships", force: :cascade do |t|
-    t.integer  "campaign_commitee_id"
-    t.integer  "voivodship_id"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+  create_table "commitees_voivodships", id: false, force: :cascade do |t|
+    t.integer "commitee_id",   null: false
+    t.integer "voivodship_id", null: false
   end
+
+  add_index "commitees_voivodships", ["commitee_id", "voivodship_id"], name: "index_commitees_voivodships_on_commitee_id_and_voivodship_id"
 
   create_table "districts", force: :cascade do |t|
     t.string   "name"
@@ -100,9 +100,9 @@ ActiveRecord::Schema.define(version: 20150204211355) do
 
   create_table "votes", force: :cascade do |t|
     t.integer  "vote"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-    t.integer  "campaign_commitee_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "_id"
     t.integer  "district_id"
   end
 

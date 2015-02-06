@@ -39,7 +39,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
 
   def update
-
+=begin
     @user = current_user
     if @user.update_attributes(user_params)
 
@@ -48,12 +48,12 @@ class UsersController < ApplicationController
     else
       render :action => 'edit'
     end
-=begin
+=end
     @user = User.find_by_id(params[:id])
     @user.update_attributes(user_params)
     flash[:success] = "Zmiany zostały zapisane!"
-    redirect_to users_path(@id)
-=end
+    redirect_to admin_users_path(@id)
+
   end
 
   # DELETE /users/1

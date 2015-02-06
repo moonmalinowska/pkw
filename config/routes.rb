@@ -1,15 +1,16 @@
 Rails.application.routes.draw do
+  resources :commitees
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   resources :votes
 
   resources :voivodships
+  resources :commitees
 
   resources :users
 
   resources :districts
-
-  resources :campaign_commitees
   resource :user_session, only: [:create, :new, :destroy]
 
   root :to => 'voivodships#index'
