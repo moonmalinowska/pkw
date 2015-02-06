@@ -11,7 +11,7 @@
     <%= link_to "Zarejestruj", new_user_path %> |
     <%= link_to "Zaloguj", new_user_session_path %>
 <% else %>
-    <%= link_to "Użytkownik", users_path(@id) %> |
+    <%= link_to "Użytkownik", @user %> |
     <%= link_to "Wyloguj", user_session_path, :method => :delete, :confirm => "Are you sure you want to logout?" %>
 <% end %>
 

@@ -1,5 +1,7 @@
 class VoivodshipsController < ApplicationController
   before_action :set_voivodship, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
+  load_and_authorize_resource :voivodship, :through => :district
 
   # GET /voivodships
   # GET /voivodships.json

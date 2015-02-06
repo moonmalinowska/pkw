@@ -7,7 +7,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :current_user_session
 
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_to root_url, :alert => exception.message
+    flash[:error] = "Access denied!"
+    redirect_to root_url
   end
 
   private

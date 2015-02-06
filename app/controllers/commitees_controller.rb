@@ -1,6 +1,7 @@
 class CommiteesController < InheritedResources::Base
 
   before_action :set_commitee, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 # GET /commitees
 # GET /commitees.json
   def index
@@ -9,6 +10,7 @@ class CommiteesController < InheritedResources::Base
 # GET /commitees/1
 # GET /commitees/1.json
   def show
+    @commitee = Commitee.find(params[:id])
   end
 # GET /commitees/new
   def new

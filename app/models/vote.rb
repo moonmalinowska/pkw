@@ -3,4 +3,6 @@ class Vote < ActiveRecord::Base
   belongs_to :commitee
 
   validates :vote, numericality: true
+
+
 end

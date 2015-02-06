@@ -28,15 +28,29 @@ class Ability
     #
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
-    user ||= User.new
-
+     if user ||= User.new
+       cannot :manage, [Vote, District, Voivodship, Commitee]
+       can :create, User
+end
     if user.role == "Centralny"
-      can [:index, :show], @voivodship
-      can :all, Vote
+      can [:show], Voivodship, :id => user.id
+      can [:index, :show], District#, :voivodship_id => voivodship.id
+      cannot :create, User
+      cannot :destroy, :all
+    elsif user.role == "Okręgowy"
+      can :show, User, :id => user.id
+      can [:index, :show], District, :user_id => user.id
+      can :update, District, :user_id => user.id
+      can [:index, :show, :update], Vote, :commitee_id => user.id #, :commitee_id => commitee.id    źle?! index niby wyrzucić, bo do wszystkich show/edit
+      can :index, Commitee
+      cannot :destroy, :all
+      cannot :create, User
+      cannot :manage, Voivodship
 
     end
 
-    can :manage, :all if user.role == "Centralny"
 
   end
+
+
 end

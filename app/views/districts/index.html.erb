@@ -27,8 +27,9 @@
         <td><%= district.other_vote %></td>
         <td><%= district.issued_voting_card %></td>
         <td><%= link_to 'Show', district %></td>
-        <td><%= link_to 'Edit', edit_district_path(district) %></td>
-        <td><%= link_to 'Destroy', district, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+        <td><%= link_to 'Edit', edit_district_path(district) if can? :update, @district %></td>
+        <td><%= link_to 'Destroy', district, method: :delete, data: { confirm: 'Are you sure?' } if can? :destroy, District%></td>
       </tr>
     <% end %>
   </tbody>

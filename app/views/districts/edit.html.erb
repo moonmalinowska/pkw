@@ -1,6 +1,43 @@
 <h1>Editing District</h1>
 
-<%= render 'form' %>
+<%= form_for(@district) do |f| %>
+    <% if @district.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@district.errors.count, "error") %> prohibited this district from being saved:</h2>
+
+          <ul>
+            <% @district.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :name %><br>
+      <%= f.text_field :name %>
+    </div>
+
+    <div class="field">
+      <%= f.label :invalid_vote %><br>
+      <%= f.number_field :invalid_vote %>
+    </div>
+    <div class="field">
+      <%= f.label :empty_vote %><br>
+      <%= f.number_field :empty_vote %>
+    </div>
+    <div class="field">
+      <%= f.label :other_vote %><br>
+      <%= f.number_field :other_vote %>
+    </div>
+    <div class="field">
+      <%= f.label :issued_voting_card %><br>
+      <%= f.number_field :issued_voting_card %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
 
 <%= link_to 'Show', @district %> |
 <%= link_to 'Back', districts_path %>
+<% end %>

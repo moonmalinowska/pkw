@@ -1,17 +1,27 @@
 <%= form_for(@commitee) do |f| %>
-  <% if @commitee.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@commitee.errors.count, "error") %> prohibited this commitee from being saved:</h2>
-
-      <ul>
-      <% @commitee.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <% if @commitee.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@commitee.errors.count, "error") %> prohibited this commitee from being saved:</h2>
+          <ul>
+            <% @commitee.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <div class="field">
+      <strong>Nazwa:</strong><br />
+      <%= f.text_field :name %>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="field">
+      <strong>Logo:</strong><br />
+      <%= f.text_area :logo %>
+    </div>
+    <div class="field">
+      <strong>Partia:</strong><br />
+      <%= f.text_field :party %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
 <% end %>

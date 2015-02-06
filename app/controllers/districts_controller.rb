@@ -1,5 +1,7 @@
 class DistrictsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_district, only: [:show, :edit, :update, :destroy]
+
 
   # GET /districts
   # GET /districts.json
@@ -40,6 +42,7 @@ class DistrictsController < ApplicationController
   # PATCH/PUT /districts/1
   # PATCH/PUT /districts/1.json
   def update
+
     respond_to do |format|
       if @district.update(district_params)
         format.html { redirect_to @district, notice: 'District was successfully updated.' }
@@ -69,6 +72,6 @@ class DistrictsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def district_params
-      params.require(:district).permit(:name, :electorate, :mandate, :invalid_vote, :empty_vote, :other_vote, :issued_voting_card)
+      params.require(:district).permit(:name, :electorate, :mandate, :invalid_vote, :empty_vote, :other_vote, :issued_voting_card, :voivodship_id, :user_id)
     end
 end

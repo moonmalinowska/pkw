@@ -21,7 +21,7 @@ ActiveAdmin.register Commitee do
   form do |f|
     f.actions
     f.inputs 'coś' do
-      f.input :voivodships, :as => :select, :input_html => {:multiple => true}
+      #f.input :voivodships, :as => :select, :input_html => {:multiple => true}
       f.input :name
       f.input :logo
       f.input :party
