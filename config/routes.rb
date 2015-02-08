@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :districts
   resource :user_session, only: [:create, :new, :destroy]
 
-  root :to => 'users#index'
+  root :to => 'districts#index'
   get 'login' => 'user_sessions#new', :as => :login
   get 'logout' => 'user_sessions#destroy', :as => :logout
 

@@ -1,52 +1,67 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>Nazwa okręgu:</strong>
   <%= @district.name %>
 </p>
 
 <p>
-  <strong>Electorate:</strong>
+  <strong>Elektorat:</strong>
   <%= @district.electorate %>
 </p>
 
 <p>
-  <strong>Mandate:</strong>
+  <strong>Liczba mandatów:</strong>
   <%= @district.mandate %>
 </p>
 
 <p>
-  <strong>Invalid vote:</strong>
+  <strong>Nieważne głosy - niepoprawne skreślenia:</strong>
   <%= @district.invalid_vote %>
 </p>
 
 <p>
-  <strong>Empty vote:</strong>
+  <strong>Nieważna głosy - puste::</strong>
   <%= @district.empty_vote %>
 </p>
 
 <p>
-  <strong>Other vote:</strong>
+  <strong>Nieważne głosy - pozostałe:</strong>
   <%= @district.other_vote %>
 </p>
 
 <p>
-  <strong>Issued voting card:</strong>
+  <strong>Liczba kart wydanych do głosowania:</strong>
   <%= @district.issued_voting_card %>
-</p>
 
+</p>
 <p>
-  <strong>Liczba głosów oddanych:</strong>
-  <%= @district.issued_voting_card %>
+  <strong>Ważne głosy:</strong>
+  <%= @district.valid_votes %>
 </p>
 <p>
   <strong>Nieważne głosy:</strong>
   <%= @district.invalid_votes %>
 </p>
 <p>
-  <%= @district.valid_votes %>
+  <strong>Liczba głosów oddanych:</strong>
+  <%= @district.issued_voting_card %>
+</p>
+<p>
+  <strong>Wszystkie oddane głosy </strong>
+  <%= @district.total %>
 </p>
 
+ <h3>Porównanie:</h3>
+<p>
+<strong>Wydane karty do głosowania: <%= @district.issued_voting_card  %><br></strong>
+</p>
+<p>
+ <strong>Wszystkie oddane głosy: <%= @district.total %><br></strong>
+</p>
+<p>
+ <strong>Różnica między wydanymi kartami a oddanymi głosami: </strong><%= @district.cards %>
+</p>
 
-<%= link_to 'Edit', edit_district_path(@district) %> |
-<%= link_to 'Back', districts_path %>
+<%= link_to 'Edytuj', edit_district_path(@district)  if can? :update, District%> |
+<%= link_to 'Powrót', districts_path %>

@@ -1,4 +1,4 @@
-<h1>Editing District</h1>
+<h1>Edycja głosów dla okręgu: <%= @district.name %> </h1>
 
 <%= form_for(@district) do |f| %>
     <% if @district.errors.any? %>
@@ -14,8 +14,7 @@
     <% end %>
 
     <div class="field">
-      <%= f.label :name %><br>
-      <%= f.text_field :name %>
+
     </div>
 
     <div class="field">
@@ -38,6 +37,6 @@
       <%= f.submit %>
     </div>
 
-<%= link_to 'Show', @district %> |
-<%= link_to 'Back', districts_path %>
+<%= link_to 'Wyświetl', @district %> |
+<%= link_to 'Powrót', districts_path %>
 <% end %>

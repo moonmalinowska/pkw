@@ -1,11 +1,14 @@
 <p id="notice"><%= notice %></p>
-<h1>Listing Commitees</h1>
+<h1>Komitety wyborcze</h1>
 <table>
   <thead>
   <tr>
     <th>Nazwa</th>
     <th>Logo</th>
     <th>Partia</th>
+    <th>Głosy</th>
+
+
     <th colspan="3"></th>
   </tr>
   </thead>
@@ -15,13 +18,22 @@
         <td><%= commitee.name %></td>
         <td><%= commitee.logo %></td>
         <td><%= commitee.party %></td>
-        <td><%= commitee.vote %></td>
-        <td><%= link_to 'Show', commitee %></td>
-        <td><%= link_to 'Edit', edit_commitee_path(commitee) if can? :update, Commitee %></td>
-        <td><%= link_to 'Destroy', commitee, method: :delete, data: { confirm: 'Are you sure?' } if can? :destroy, Commitee %></td>
+        <% @votes.each do |vote| %>
+            <% if vote.commitee_id == commitee.id %>
+        <td><%= vote.vote %></td>
+            <% end %>
+        <% end %>
+        <td><%= link_to 'Wyświetl', commitee %></td>
+        <% @votes.each do |vote| %>
+            <% if vote.commitee_id == commitee.id %>
+        <td><%= link_to 'Dodaj głosy', edit_vote_path(vote) if can? :update, Commitee %></td>
+            <% end %>
+        <% end %>
+        <td><%= link_to 'Usuń', commitee, method: :delete, data: { confirm: 'Are you sure?' } if can? :destroy, Commitee %></td>
       </tr>
   <% end %>
+
   </tbody>
 </table>
 <br>
-<%= link_to 'New Commitee', new_commitee_path %>
+<%= link_to 'New Commitee', new_commitee_path if can? :create, Commitee %>

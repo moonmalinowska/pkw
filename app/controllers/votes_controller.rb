@@ -6,6 +6,8 @@ class VotesController < ApplicationController
   # GET /votes.json
   def index
     @votes = Vote.all
+    @commitees = Commitee.all
+
   end
 
   # GET /votes/1
@@ -21,6 +23,7 @@ class VotesController < ApplicationController
 
   # GET /votes/1/edit
   def edit
+
   end
 
   # POST /votes
@@ -69,8 +72,16 @@ class VotesController < ApplicationController
       @vote = Vote.find(params[:id])
     end
 
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def vote_params
       params.require(:vote).permit(:vote, :district_id, :commitee_id)
     end
+
+  def set_committees
+    d = District.find_by_id(current_user.district_id)
+    @committees = d.voivodeship.committees.map do |c|
+      [c.name, c.id]
+    end
+  end
 end

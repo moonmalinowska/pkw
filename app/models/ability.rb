@@ -28,26 +28,41 @@ class Ability
     #
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
-     if user ||= User.new
-       cannot :manage, [Vote, District, Voivodship, Commitee]
-       can :create, User
-end
+
+    if user ||= User.new
+      cannot :manage, [Vote, District, Voivodship, Commitee]
+      can :create, User
+    end
+
     if user.role == "Centralny"
-      can [:show], Voivodship, :id => user.id
+      can [:index, :show],  Voivodship#, :id => user.id
       can [:index, :show], District#, :voivodship_id => voivodship.id
-      cannot :create, User
+      can [:index, :show], Commitee
+      cannot [:edit, :update], Commitee
+      cannot :create, [User, Voivodship, Commitee]
+      cannot :index, User
       cannot :destroy, :all
     elsif user.role == "Okręgowy"
       can :show, User, :id => user.id
       can [:index, :show], District, :user_id => user.id
-      can :update, District, :user_id => user.id
-      can [:index, :show, :update], Vote, :commitee_id => user.id #, :commitee_id => commitee.id    źle?! index niby wyrzucić, bo do wszystkich show/edit
-      can :index, Commitee
+      can [:edit, :update], District, :user_id => user.id
+      can  :edit, @district, :user_id => user.id
+      #cannot :update, District, District.electorate do |electorate|
+      #  @district.electorate
+      #end
+      #cannot :update, District, District.mandate
+      can [:show, :update, :edit, :index], Vote #, :commitee_id => commitee.id    źle?! index niby wyrzucić, bo do wszystkich show/edit
+      can [:index, :update, :show], Commitee
+      cannot :edit, Commitee
+      can :show, @commitee
       cannot :destroy, :all
-      cannot :create, User
+      cannot :create, [User, District, Commitee]
       cannot :manage, Voivodship
+     #elsif user.role.nil?
+      # cannot :manage, [Vote, District, Voivodship, Commitee]
 
-    end
+  end
+
 
 
   end

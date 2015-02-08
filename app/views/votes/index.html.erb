@@ -5,8 +5,10 @@
 <table>
   <thead>
     <tr>
-      <th>Partia:</th>
-      <th></th>
+      <th>Nazwa okręgu</th>
+      <th>Komitet wyborczy</th>
+      <th>Ilość głosów ważnych</th>
+
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,10 +17,13 @@
 
     <% @votes.each do |vote| %>
       <tr>
+        <td><%= vote.district.name %></td>
+        <td><%= vote.commitee.name %></td>
         <td><%= vote.vote %></td>
-        <td><%= link_to 'Show', vote if can? :update, Vote %></td>
-        <td><%= link_to 'Edit', edit_vote_path(vote) if can? :update, Vote %></td>
-        <td><%= link_to 'Destroy', vote, method: :delete, data: { confirm: 'Are you sure?' } if can? :destroy, Vote %></td>
+
+        <td><%= link_to 'Wyświetl', vote if can? :update, Vote %></td>
+        <td><%= link_to 'Edytuj', edit_vote_path(vote) if can? :update, Vote %></td>
+        <td><%= link_to 'Usuń', vote, method: :delete, data: { confirm: 'Are you sure?' } if can? :destroy, Vote %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +31,4 @@
 
 <br>
 
-<%= link_to 'New Vote', new_vote_path %>
+<%= link_to 'New Vote', new_vote_path if can? :create , Vote %>

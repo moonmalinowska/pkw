@@ -1,7 +1,7 @@
 class District < ActiveRecord::Base
   has_many :votes
-  belongs_to :voivodship
-  belongs_to :user
+  belongs_to :voivodship, :class_name => "Voivodship", :foreign_key => "voivodship_id"
+  belongs_to :user, :class_name => "User", :foreign_key => "user_id"
 
   validates :electorate, numericality: true
   validates :mandate, numericality: true
@@ -21,4 +21,28 @@ class District < ActiveRecord::Base
   def invalid_votes
     total = self.invalid_vote + self.empty_vote + self.other_vote
   end
-end
+
+   def total
+     total = self.valid_votes + self.invalid_votes
+   end
+
+   def cards
+     if self.issued_voting_card == self.total
+       cards = "Liczba kart się zgadza"
+     else
+       cards = self.issued_voting_card - self.total
+     end
+
+   end
+
+   def by_id
+     current_district= (@districts.where(user_id: current_user))
+     by_id = self.voivodship_id
+   end
+
+
+
+
+
+  end
+

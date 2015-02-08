@@ -12,31 +12,31 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br>
+    <strong>Nazwa:</strong><br>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :electorate %><br>
-    <%= f.number_field :electorate %>
+    <strong>Elektorat:</strong><br>
+    <%= f.number_field :electorate if can? :update, District.electorate %>
   </div>
   <div class="field">
-    <%= f.label :mandate %><br>
-    <%= f.number_field :mandate %>
+    <strong>Liczba mandatów:</strong><br>
+    <%= f.number_field :mandate if can? :update, District.mandate %>
   </div>
   <div class="field">
-    <%= f.label :invalid_vote %><br>
+    <strong>Głosy nieważne - ilość skreśleń:</strong><br>
     <%= f.number_field :invalid_vote %>
   </div>
   <div class="field">
-    <%= f.label :empty_vote %><br>
+    Głosy nieważne - puste:<br>
     <%= f.number_field :empty_vote %>
   </div>
   <div class="field">
-    <%= f.label :other_vote %><br>
+    <strong>Głosy nieważne - pozostałe:</strong><br>
     <%= f.number_field :other_vote %>
   </div>
   <div class="field">
-    <%= f.label :issued_voting_card %><br>
+    <strong>Wydane karty do głosowania:</strong><br>
     <%= f.number_field :issued_voting_card %>
   </div>
   <div class="actions">

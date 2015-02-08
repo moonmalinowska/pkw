@@ -6,6 +6,15 @@ class Commitee < ActiveRecord::Base
   validates :name, presence: true, length: {within: 2..50}
   validates :party, presence: true, length: {within: 2..50}
 
+
   #scope :commitee_id, -> { joins(:votes).where('votes.commitee_id = ?', true) }
+
+
+ # def glos
+ #   @rank = 0
+ #   @committee.votes.each do |v|
+ #   @rank = @rank + v.amount
+ #   end
+ # end
 
 end

@@ -1,8 +1,9 @@
 <h1>Edycja użytkownika</h1>
+<%= form_for(@user) do |f| %>
 
 <div class="field">
   <strong>Hasło:</strong><br>
-  <%= f.password_field :password %>
+  <%= f.password_field :password, placeholder: "Pozostaw to pole puste jeśli nie chcesz zmieniać" %>
 </div>
 <div class="field">
   <strong>Potwierdź hasło:</strong> <br />
@@ -14,6 +15,6 @@
 <div class="actions">
   <%= f.submit "Zatwierdź" %>
 </div>
-
+<% end %>
 <%= link_to 'Wyświetl', @user %> |
 <%= link_to 'Powrót', users_path %>

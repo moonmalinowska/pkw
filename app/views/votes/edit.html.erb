@@ -1,6 +1,28 @@
-<h1>Editing Vote</h1>
+<h1>Dodaj głosy:</h1>
 
-<%= render 'form' %>
+<%= form_for(@vote) do |f| %>
+    <% if @vote.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@vote.errors.count, "error") %> prohibited this vote from being saved:</h2>
 
-<%= link_to 'Show', @vote %> |
-<%= link_to 'Back', votes_path %>
+          <ul>
+            <% @vote.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <strong>Liczba głosów: <%= @vote.vote %></strong><br>
+      <strong>Wpisz liczbę głosów z Twojego okręgu:</strong>
+      <%= f.number_field :vote %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>
+
+
+<%= link_to 'Wyświetl', @vote %> |
+<%= link_to 'Powrót', commitees_path %>

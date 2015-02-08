@@ -6,12 +6,21 @@ class DistrictsController < ApplicationController
   # GET /districts
   # GET /districts.json
   def index
+
+
+   # @voivodships = Voivodship.all
+   # current_district= (District.all.where(user_id: current_user))
+   # @voivodships.each do |v|
+   #   @districts= (District.where(voivodship_id v.id))
+   #   end
+
     @districts = District.all
   end
 
   # GET /districts/1
   # GET /districts/1.json
   def show
+
   end
 
   # GET /districts/new
@@ -70,8 +79,16 @@ class DistrictsController < ApplicationController
       @district = District.find(params[:id])
     end
 
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def district_params
       params.require(:district).permit(:name, :electorate, :mandate, :invalid_vote, :empty_vote, :other_vote, :issued_voting_card, :voivodship_id, :user_id)
     end
+
+  def set_voivodeships
+    @voivodeships = Voivodeship.all.map do |v|
+      [v.name, v.id]
+    end
+  end
+
 end

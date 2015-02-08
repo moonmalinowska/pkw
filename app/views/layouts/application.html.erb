@@ -11,8 +11,14 @@
     <%= link_to "Zarejestruj", new_user_path %> |
     <%= link_to "Zaloguj", new_user_session_path %>
 <% else %>
-    <%= link_to "Użytkownik", @user %> |
-    <%= link_to "Wyloguj", user_session_path, :method => :delete, :confirm => "Are you sure you want to logout?" %>
+    <%= link_to "Strona główna", districts_path %> |
+    <%= link_to "Użytkownik", user_path(current_user) %> |
+    <%if can? :show, Commitee %>
+    <%= link_to "Komitety wyborcze", commitees_path if can? :show, Commitee %> |
+        <% end %>
+    <%= link_to "Województwa", voivodships_path if can? :index, Voivodship %> |
+
+    <%= link_to "Wyloguj", user_session_path, :method => :delete, :confirm => "Are you sure you want to logout?" %> |
 <% end %>
 
 <%= yield %>

@@ -12,7 +12,8 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :vote %><br>
+    <strong>Liczba głosów: <%= @vote.vote %></strong><br>
+    <strong>Wpisz liczbę głosów:</strong>
     <%= f.number_field :vote %>
   </div>
   <div class="actions">

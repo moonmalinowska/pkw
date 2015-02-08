@@ -1,7 +1,7 @@
 class VoivodshipsController < ApplicationController
   before_action :set_voivodship, only: [:show, :edit, :update, :destroy]
-  load_and_authorize_resource
-  load_and_authorize_resource :voivodship, :through => :district
+  #load_and_authorize_resource
+  load_and_authorize_resource :only => [:index, :show]
 
   # GET /voivodships
   # GET /voivodships.json
@@ -12,6 +12,9 @@ class VoivodshipsController < ApplicationController
   # GET /voivodships/1
   # GET /voivodships/1.json
   def show
+    @voivodship = Voivodship.find(params[:id])
+    @voivodships = Voivodship.all
+    @commitees = Commitee.all
   end
 
   # GET /voivodships/new
@@ -68,6 +71,11 @@ class VoivodshipsController < ApplicationController
     def set_voivodship
       @voivodship = Voivodship.find(params[:id])
     end
+  def set_committees
+    @commitees = Commitee.all.map do |commitee|
+      [commitee.name, commitee.id]
+    end
+  end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def voivodship_params

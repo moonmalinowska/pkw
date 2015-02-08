@@ -1,9 +1,27 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @voivodship.name %>
-</p>
 
-<%= link_to 'Edit', edit_voivodship_path(@voivodship) %> |
-<%= link_to 'Back', voivodships_path %>
+<h1>Województwo <%= @voivodship.name %></h1>
+<table>
+
+
+  <tbody>
+  <strong>Okręgi</strong>
+<ul>
+  <% @voivodship.districts.each do |district| %>
+      <li><%= district.name %></li>
+  <% end %>
+  </ul>
+  <strong>Komitety</strong>
+  <ul>
+  <% @voivodship.commitees.each do |commitee| %>
+     <li><%= commitee.name %></li>
+  <% end %>
+</ul>
+
+
+  </tbody>
+</table>
+
+
+

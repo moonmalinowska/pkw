@@ -11,5 +11,7 @@
   <strong>Partia:</strong>
   <%= @commitee.party %>
 </p>
-<%= link_to 'Edit', edit_commitee_path(@commitee) %> |
-<%= link_to 'Back', commitees_path %>
+
+
+<%= link_to 'Edytuj', edit_commitee_path(@commitee) if can? :edit, Commitee%> |
+<%= link_to 'Powrót', commitees_path %>

@@ -1,9 +1,9 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Vote:</strong>
+  <strong>Liczba głosów:</strong>
   <%= @vote.vote %>
 </p>
 
-<%= link_to 'Edit', edit_vote_path(@vote) %> |
-<%= link_to 'Back', votes_path %>
+<%= link_to 'Dodaj głosy', edit_vote_path(@vote) if can? [:edit, :update], Vote %> |
+<%= link_to 'Powrót', commitees_path %>

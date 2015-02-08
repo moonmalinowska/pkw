@@ -6,11 +6,13 @@ class CommiteesController < InheritedResources::Base
 # GET /commitees.json
   def index
     @commitees = Commitee.all
+    @votes = Vote.all
   end
 # GET /commitees/1
 # GET /commitees/1.json
   def show
     @commitee = Commitee.find(params[:id])
+
   end
 # GET /commitees/new
   def new
@@ -60,9 +62,18 @@ class CommiteesController < InheritedResources::Base
   def set_commitee
     @commitee = Commitee.find(params[:id])
   end
+  def set_voivodeships
+    @voivodeships = Voivodeship.all.map do |v|
+      [v.name, v.id]
+    end
+  end
+
+  def set_vote
+    @vote = Vote.find(params[:id])
+  end
 # Never trust parameters from the scary internet, only allow the white list through.
   def commitee_params
-    params.require(:commitee).permit(:name, :logo, :party)
+    params.require(:commitee).permit(:name, :logo, :party, {:voivodeship_ids => []})
   end
 end
 

@@ -1,28 +1,29 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Voivodships</h1>
-
+<h1>Lista województw</h1>
 <table>
   <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
+  <tr>
+    <th>Nazwa</th>
+    <th>Liczba okręgów</th>
+    <th>Liczba komitetów</th>
+    <th colspan="3"></th>
+  </tr>
   </thead>
-
   <tbody>
-    <% @voivodships.each do |voivodship| %>
+  <% @voivodships.each do |voivodship| %>
       <tr>
         <td><%= voivodship.name %></td>
-        <td><%= link_to 'Show', voivodship %></td>
+        <td><%= voivodship.districts.count %></td>
+        <td><%= voivodship.commitees.count %></td>
+        <td><%= link_to 'Edytuj', edit_voivodship_path(@voivodship) if can? :edit, Voivodship%> </td>
 
+        <td><%= link_to 'Wyświetl', voivodship %></td>
       </tr>
-    <% end %>
-
-
+  <% end %>
   </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Voivodship', new_voivodship_path %>
+<%= link_to 'New Voivodship', new_voivodship_path if can? :create, Voivodship%>

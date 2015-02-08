@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_one :district
+  has_one :district, :class_name => "District", :foreign_key => "district_id"
   ROLES = %i[Okręgowy Centralny]
 
   validates :password, :on => :create, presence: true
@@ -19,6 +19,8 @@ class User < ActiveRecord::Base
     ROLES.index(base_role.to_s) <= ROLES.index(role)
   end
 
-
+  def set_district
+    @district = District.find(params[:id])
+  end
 
 end
