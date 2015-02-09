@@ -1,5 +1,7 @@
 class VotesController < ApplicationController
   before_action :set_vote, only: [:show, :edit, :update, :destroy]
+  before_action :set_districts, only: [:new, :edit, :update, :create]
+  before_action :set_commitees, only: [:new, :edit, :update, :create]
   load_and_authorize_resource :only => [:index, :show, :edit, :update]
 
   # GET /votes
@@ -45,6 +47,7 @@ class VotesController < ApplicationController
   # PATCH/PUT /votes/1
   # PATCH/PUT /votes/1.json
   def update
+=begin
     respond_to do |format|
       if @vote.update(vote_params)
         format.html { redirect_to @vote, notice: 'Vote was successfully updated.' }
@@ -53,6 +56,14 @@ class VotesController < ApplicationController
         format.html { render :edit }
         format.json { render json: @vote.errors, status: :unprocessable_entity }
       end
+    end
+=end
+
+    if @vote.update(vote_params)
+      flash[:notice] = 'Dane zostały zmienione!'
+      redirect_to @vote
+    else
+      render :action => 'edit'
     end
   end
 
@@ -78,10 +89,25 @@ class VotesController < ApplicationController
       params.require(:vote).permit(:vote, :district_id, :commitee_id)
     end
 
-  def set_committees
-    d = District.find_by_id(current_user.district_id)
-    @committees = d.voivodeship.committees.map do |c|
-      [c.name, c.id]
+  def set_districts
+    @districts = District.all.map do |district|
+      [district.name + ' ' + district.voivodship.name, district.id]
     end
   end
+
+  def set_commitees
+    commitees = Commitee.all.map do |commitee|
+      [commitee.name + ' ' + commitee.voivodships.name, commitee.id]
+    end
+  #  d = District.find_by_id(current_user.district_id)
+  #  @commitees = d.voivodship.committees.map do |c|
+  #    [c.name, c.id]
+  #  end
+  end
+  #def valid_votes
+  #  self.votes.count
+  #end
+  #def valid_votes
+  #  valid = self.vote.inject(0){|s,v| s + v.vote }
+  #end
 end

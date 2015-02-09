@@ -26,6 +26,7 @@
 
 
       <% @districts.each do |district| %>
+          <% if   district.voivodship_id == 1%>
       <tr>
         <td><%= district.name %></td>
         <td><%= district.voivodship.name %></td>
@@ -39,6 +40,7 @@
 
         <td><%= link_to 'Usuń', district, method: :delete, data: { confirm: 'Are you sure?' } if can? :destroy, District%></td>
       </tr>
+          <% end %>
       <% end %>
   <% end %>
 

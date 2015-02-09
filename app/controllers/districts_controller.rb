@@ -1,6 +1,7 @@
 class DistrictsController < ApplicationController
   load_and_authorize_resource
   before_action :set_district, only: [:show, :edit, :update, :destroy]
+  before_action :set_voivodships, only: [:show, :edit, :update, :destroy]
 
 
   # GET /districts
@@ -14,6 +15,8 @@ class DistrictsController < ApplicationController
    #   end
 
     @districts = District.all
+    @voivodships = Voivodship.all
+    @current_district= (District.all.where(user_id: current_user))
   end
 
   # GET /districts/1
@@ -85,7 +88,7 @@ class DistrictsController < ApplicationController
     end
 
   def set_voivodeships
-    @voivodeships = Voivodeship.all.map do |v|
+    @voivodships = Voivodship.all.map do |v|
       [v.name, v.id]
     end
   end

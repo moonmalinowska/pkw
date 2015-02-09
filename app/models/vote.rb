@@ -6,10 +6,16 @@ class Vote < ActiveRecord::Base
 
    def district_name
     # district_name = self.district.name
-     district = self.districts.name
+     district = self.district.name
    end
 
   def commitee_name
      commitee_name = self.commitee.name
+  end
+
+
+  def add(vote)
+
+    vote + self.vote
   end
   end

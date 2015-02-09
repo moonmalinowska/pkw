@@ -9,7 +9,7 @@
   <strong>Okręgi</strong>
 <ul>
   <% @voivodship.districts.each do |district| %>
-      <li><%= district.name %></li>
+      <li><%= district.name %> - liczba głosów: <%= district.votes.count %></li>
   <% end %>
   </ul>
   <strong>Komitety</strong>

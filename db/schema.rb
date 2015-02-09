@@ -106,7 +106,6 @@ ActiveRecord::Schema.define(version: 20150208224030) do
     t.integer  "vote",        default: 0, null: false
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
-    t.integer  "_id"
     t.integer  "district_id"
     t.integer  "commitee_id"
   end

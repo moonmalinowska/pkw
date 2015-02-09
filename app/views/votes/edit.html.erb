@@ -14,12 +14,16 @@
     <% end %>
 
     <div class="field">
+
+        Nazwa komitetu:<strong> <%= @vote.commitee_name %> </strong>w okręgu: <strong><%= @vote.district_name %></strong><br>
+
       <strong>Liczba głosów: <%= @vote.vote %></strong><br>
-      <strong>Wpisz liczbę głosów z Twojego okręgu:</strong>
-      <%= f.number_field :vote %>
+      <strong>Wpisz liczbę uzyskanych głosów:</strong>
+
+      <%= f.number_field :vote%>
     </div>
     <div class="actions">
-      <%= f.submit %>
+      <%= f.submit "Zatwierdź"%>
     </div>
 <% end %>
 

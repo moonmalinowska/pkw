@@ -1,5 +1,7 @@
 class VoivodshipsController < ApplicationController
   before_action :set_voivodship, only: [:show, :edit, :update, :destroy]
+  before_action :set_commitees, only: [:show, :edit, :update, :destroy]
+  before_action :set_votes, only: [:show, :edit, :update, :destroy]
   #load_and_authorize_resource
   load_and_authorize_resource :only => [:index, :show]
 
@@ -15,6 +17,7 @@ class VoivodshipsController < ApplicationController
     @voivodship = Voivodship.find(params[:id])
     @voivodships = Voivodship.all
     @commitees = Commitee.all
+    @votes = Vote.all
   end
 
   # GET /voivodships/new
@@ -71,10 +74,16 @@ class VoivodshipsController < ApplicationController
     def set_voivodship
       @voivodship = Voivodship.find(params[:id])
     end
-  def set_committees
+  def set_commitees
     @commitees = Commitee.all.map do |commitee|
       [commitee.name, commitee.id]
     end
+  end
+  def set_votes
+    @votes = Vote.all.map do |vote|
+      [vote.vote, vote.id]
+    end
+
   end
 
     # Never trust parameters from the scary internet, only allow the white list through.

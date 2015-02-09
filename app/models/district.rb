@@ -15,11 +15,11 @@ class District < ActiveRecord::Base
   end
 
   def valid_votes
-    total = self.votes.inject(0){|s,v| s + v.vote }
+    valid = self.votes.inject(0){|s,v| s + v.vote }
   end
 
   def invalid_votes
-    total = self.invalid_vote + self.empty_vote + self.other_vote
+    invalid = self.invalid_vote + self.empty_vote + self.other_vote
   end
 
    def total
@@ -38,7 +38,7 @@ class District < ActiveRecord::Base
    def by_id
      current_district= (@districts.where(user_id: current_user))
      by_id = self.voivodship_id
-   end
+        end
 
 
 
