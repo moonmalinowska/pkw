@@ -26,5 +26,9 @@ class ApplicationController < ActionController::Base
       redirect_to new_user_session_path
     end
   end
+def current_district
+  return @current_district if defined?(@current_district)
+   @current_district = District.all.where(district_id: current_district)
 
+end
 end

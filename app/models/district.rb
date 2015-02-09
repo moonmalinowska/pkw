@@ -10,9 +10,7 @@ class District < ActiveRecord::Base
   validates :other_vote, numericality: true
   validates :issued_voting_card, numericality: true
 
-  def set_district
-    @district = District.find(params[:id])
-  end
+
 
   def valid_votes
     valid = self.votes.inject(0){|s,v| s + v.vote }
@@ -40,7 +38,9 @@ class District < ActiveRecord::Base
      by_id = self.voivodship_id
         end
 
-
+def frekwencja
+  f = ((self.total.to_f / self.electorate.to_f)*100).round(2)
+end
 
 
 

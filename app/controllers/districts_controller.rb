@@ -1,7 +1,7 @@
 class DistrictsController < ApplicationController
   load_and_authorize_resource
-  before_action :set_district, only: [:show, :edit, :update, :destroy]
-  before_action :set_voivodships, only: [:show, :edit, :update, :destroy]
+  before_action :set_district, only: [:index, :show, :edit, :update, :destroy]
+  #before_action :set_voivodships, only: [:show, :edit, :update, :destroy]
 
 
   # GET /districts
@@ -14,9 +14,10 @@ class DistrictsController < ApplicationController
    #   @districts= (District.where(voivodship_id v.id))
    #   end
 
-    @districts = District.all
+    #@districts = District.all
     @voivodships = Voivodship.all
-    @current_district= (District.all.where(user_id: current_user))
+    @districts = District.where(:user_id => current_user.id)
+   # @current_district= District.all.where(user_id: current_user)
   end
 
   # GET /districts/1
@@ -78,7 +79,7 @@ class DistrictsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_district
-      @district = District.find(params[:id])
+   #   @district = District.find(params[:id])
     end
 
 

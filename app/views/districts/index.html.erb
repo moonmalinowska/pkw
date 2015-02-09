@@ -2,7 +2,7 @@
 
 
 <table>
-  <% if can? :index, Voivodship%>
+  <% if can? :index, Vote%>
   <thead>
     <tr>
 
@@ -13,38 +13,34 @@
 
       <th>Liczba wydanych kart</th>
       <th>Zgodność liczby kart</th>
+      <th>Frekwencja</th>
       <th colspan="3"></th>
     </tr>
   </thead>
-<% end %>
+
   <tbody>
-  <h3><%= link_to 'Pokaż głosy w swoim okręgu', district_path(current_user) if can? :update, Commitee%></h3>
-          <h3><%= link_to 'Edytuj głosy w swoim okręgu', edit_district_path(current_user) if can? :update, Commitee%></h3>
-
-<% if can? :index, Voivodship%>
-      <h2>Lista okręgów</h2>
-
 
       <% @districts.each do |district| %>
-          <% if   district.voivodship_id == 1%>
       <tr>
         <td><%= district.name %></td>
         <td><%= district.voivodship.name %></td>
-
         <td><%= district.electorate %></td>
         <td><%= district.mandate %></td>
         <td><%= district.issued_voting_card %></td>
         <td><%= district.cards %></td>
+        <td><%= district.frekwencja %></td>
+        <h3><%= link_to 'Pokaż głosy w swoim okręgu', district_path(district) if can? :update, Commitee%></h3>
+        <h3><%= link_to 'Edytuj głosy w swoim okręgu', edit_district_path(district) if can? :update, Commitee%></h3>
 
 
 
         <td><%= link_to 'Usuń', district, method: :delete, data: { confirm: 'Are you sure?' } if can? :destroy, District%></td>
       </tr>
           <% end %>
-      <% end %>
+
+
+      <h2>Lista okręgów</h2>
   <% end %>
-
-
   </tbody>
 </table>
 

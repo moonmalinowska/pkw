@@ -29,11 +29,12 @@ class Ability
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
 
-    if user ||= User.new
-      cannot :manage, [Vote, District, Voivodship, Commitee]
-      can :create, User
-      can :index, User
-    end
+    #if
+    user ||= User.new
+    #  cannot :manage, [Vote, District, Voivodship, Commitee]
+    #  can :create, User
+     # can :index, User
+    #end
 
     if user.role == "Centralny"
       can [:index, :show],  Voivodship#, :id => user.id
@@ -45,7 +46,9 @@ class Ability
       cannot :destroy, :all
     elsif user.role == "Okręgowy"
       can :show, User, :id => user.id
-      can [:index, :show], District, :user_id => user.id
+      can [:index, :show], District do |district|
+        district.try(:user) == user
+      end
       can [:edit, :update], District, :user_id => user.id
       can  :edit, @district, :user_id => user.id
       #cannot :update, District, District.electorate do |electorate|
@@ -59,9 +62,7 @@ class Ability
       cannot :destroy, :all
       cannot :create, [User, District, Commitee]
       cannot :manage, Voivodship
-     elsif user.role.nil?
-       cannot :manage, [Vote, District, Voivodship, Commitee]
-       can :index, User
+
 
   end
 
