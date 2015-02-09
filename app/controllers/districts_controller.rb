@@ -7,7 +7,6 @@ class DistrictsController < ApplicationController
   # GET /districts.json
   def index
 
-
    # @voivodships = Voivodship.all
    # current_district= (District.all.where(user_id: current_user))
    # @voivodships.each do |v|
@@ -90,5 +89,6 @@ class DistrictsController < ApplicationController
       [v.name, v.id]
     end
   end
+
 
 end

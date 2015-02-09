@@ -23,7 +23,7 @@ ActiveAdmin.register Commitee do
     f.inputs 'Komitety:' do
       #f.input :voivodships, :as => :select, :input_html => {:multiple => true}
       f.input :name
-      f.input :logo
+      f.file_field :logo, required: false,  :html => { :multipart => true }
       f.input :party
     end
     f.actions

@@ -54,3 +54,5 @@ gem 'devise'
 gem 'cancancan', '~> 1.10'
 # Use authentication
 gem 'authlogic'
+
+gem 'paperclip', '~> 4.2'

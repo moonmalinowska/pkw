@@ -16,7 +16,7 @@
   <% @commitees.each do |commitee| %>
       <tr>
         <td><%= commitee.name %></td>
-        <td><%= commitee.logo %></td>
+        <td><%= image_tag commitee.logo.url(:thumb) %></td>
         <td><%= commitee.party %></td>
         <% @votes.each do |vote| %>
             <% if vote.commitee_id == commitee.id %>

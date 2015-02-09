@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   validates :login, uniqueness: true, presence: true,
             length: {within: 6..15}
 
+
   acts_as_authentic do |config|
     config.validate_login_field = false
     config.validate_password_field = false

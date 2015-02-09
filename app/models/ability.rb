@@ -32,6 +32,7 @@ class Ability
     if user ||= User.new
       cannot :manage, [Vote, District, Voivodship, Commitee]
       can :create, User
+      can :index, User
     end
 
     if user.role == "Centralny"
@@ -58,8 +59,9 @@ class Ability
       cannot :destroy, :all
       cannot :create, [User, District, Commitee]
       cannot :manage, Voivodship
-     #elsif user.role.nil?
-      # cannot :manage, [Vote, District, Voivodship, Commitee]
+     elsif user.role.nil?
+       cannot :manage, [Vote, District, Voivodship, Commitee]
+       can :index, User
 
   end
 

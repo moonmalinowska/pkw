@@ -8,7 +8,7 @@
 </head>
 <body>
 <% if !current_user %>
-    <%= link_to "Zarejestruj", new_user_path %> |
+  <!--  <%= link_to "Zarejestruj", new_user_path %> | -->
     <%= link_to "Zaloguj", new_user_session_path %>
 <% else %>
     <%= link_to "Strona główna", districts_path %> |

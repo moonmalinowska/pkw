@@ -31,7 +31,7 @@ class UsersController < ApplicationController
 
     if @user.save
       flash[:notice] = "User was successfully created."
-      redirect_to root_url
+      redirect_to 'users#index'
     else
       flash[:notice] = "There was a problem creating you."
       render :action => :new
